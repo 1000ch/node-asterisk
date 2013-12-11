@@ -1,8 +1,8 @@
-# css-doc
+# cssdoc
 
 ## About
 
-CSS parser base.
+CSS document base.
 
 ## License
 

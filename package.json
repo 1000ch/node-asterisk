@@ -1,23 +1,21 @@
 {
-  "name": "css-doc",
+  "name": "cssdoc",
   "version": "0.0.0",
-  "description": "CSS parser base",
+  "description": "CSS document base.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/1000ch/css-doc.git"
+    "url": "git://github.com/1000ch/cssdoc.git"
   },
   "author": "1000ch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/1000ch/css-doc/issues"
+    "url": "https://github.com/1000ch/cssdoc/issues"
   },
-  "homepage": "https://github.com/1000ch/css-doc",
+  "homepage": "https://github.com/1000ch/cssdoc",
   "dependencies": {
     "commander": "~2.1.0",
-    "marked": "~0.2.10"
+    "marked": "~0.2.10",
+    "optimist": "~0.6.0"
   }
 }
