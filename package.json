@@ -2,7 +2,9 @@
   "name": "cssdoc",
   "version": "0.0.0",
   "description": "CSS document base.",
-  "main": "index.js",
+  "bin": {
+    "cssdoc": "bin/cssdoc.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/1000ch/cssdoc.git"
@@ -16,6 +18,6 @@
   "dependencies": {
     "commander": "~2.1.0",
     "marked": "~0.2.10",
-    "optimist": "~0.6.0"
+    "iconv-lite": "~0.2.11"
   }
 }
