@@ -1,0 +1,23 @@
+{
+  "name": "css-doc",
+  "version": "0.0.0",
+  "description": "CSS parser base",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/1000ch/css-doc.git"
+  },
+  "author": "1000ch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1000ch/css-doc/issues"
+  },
+  "homepage": "https://github.com/1000ch/css-doc",
+  "dependencies": {
+    "commander": "~2.1.0",
+    "marked": "~0.2.10"
+  }
+}
