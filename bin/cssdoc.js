@@ -77,7 +77,7 @@ async.parallel(targetMap, function(error, results) {
   }
   Object.keys(results).forEach(function(dest) {
     var cssString = results[dest];
-    fs.writeFileSync('assets/tmp.css', cssString, {
+    fs.writeFileSync('assets/temporary.css', cssString, {
       encoding: 'utf8',
       flag: 'w'
     });
