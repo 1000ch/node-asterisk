@@ -1,0 +1,12 @@
+/*
+
+This is sample description of `.sample`.
+
+```html
+<button class='sample'>Button</button>
+```
+
+*/
+.sample {
+  display: inline-block;
+}
