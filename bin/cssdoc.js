@@ -6,8 +6,10 @@ var path = require('path');
 
 // external lib
 var argv = require('optimist').argv;
+var jade = require('jade');
 var marked = require('marked');
 var glob = require('glob');
+var async = require('async');
 
 // own lib
 var file = require('../lib/file');
@@ -60,6 +62,32 @@ if (targetFiles.length === 0) {
     console.info(file + ' is processing.')
   });
 }
+
+
+
+async.parallel({
+  reset: function(callback) {
+    callback(null, fs.readFileSync('assets/reset.css', {encoding: 'utf8'}));
+  },
+  github: function(callback) {
+    callback(null, fs.readFileSync('assets/github.css', {encoding: 'utf8'}));
+  }
+}, function(error, results) {
+  if (error) {
+    throw error;
+  }
+  jade.renderFile('assets/base.jade', {
+    pretty: true
+  }, function(error, html) {
+    if (error) {
+      throw error;
+    }console.log(html);
+    fs.writeFileSync('dest.html', html, {
+      encoding: 'utf8',
+      flag: 'w'
+    });
+  });
+});
 
 function isCSSFile(arg) {
   return (path.extname(arg) === '.css');
