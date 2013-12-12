@@ -26,7 +26,7 @@ marked.setOptions({
 });
 
 // target css files
-var targetFiles = [];
+var targetMap = {};
 
 // if argument is not specified
 if (argv._.length === 0) {
@@ -38,57 +38,59 @@ argv._.filter(function(arg) {
   return fs.existsSync(arg);
 }).forEach(function(arg) {
   if (file.isFile(arg)) {
-    console.log('arg is a file:' + arg);
-    isCSSFile(arg) && targetFiles.push(arg);
+    // if arg is a file
+    if (path.extname(arg) === '.css') {
+      targetMap[path.basename(arg).replace('.css', '.html')] = function(callback) {
+        callback(null, fs.readFileSync(arg, {encoding: 'utf8'}));
+      };
+    }
   } else if (file.isDir(arg)) {
-    console.log('arg is a directory:' + arg);
+    // arg is a directory
     fs.readdirSync(arg).forEach(function(file) {
-      isCSSFile(arg) && targetFiles.push(file);
+      if (path.extname(file) === '.css') {
+        targetMap[path.basename(file).replace('.css', '.html')] = function(callback) {
+          callback(null, fs.readFileSync(arg, {encoding: 'utf8'}));
+        };
+      }
     });
   } else {
-    console.log('arg is the other:' + arg);
+    // arg is the other
     glob(arg, function(error, files) {
       files.forEach(function(file) {
-        isCSSFile(arg) && targetFiles.push(file);
+        if (path.extname(file) === '.css') {
+          targetMap[path.basename(file).replace('.css', '.html')] = function(callback) {
+            callback(null, fs.readFileSync(arg, {encoding: 'utf8'}));
+          };
+        }
       });
     });
   }
 });
 
-if (targetFiles.length === 0) {
+if (Object.keys(targetMap).length === 0) {
   throw new Error('No css file is specified.');
-} else {
-  targetFiles.forEach(function(file) {
-    console.info(file + ' is processing.')
-  });
 }
 
-
-
-async.parallel({
-  reset: function(callback) {
-    callback(null, fs.readFileSync('assets/reset.css', {encoding: 'utf8'}));
-  },
-  github: function(callback) {
-    callback(null, fs.readFileSync('assets/github.css', {encoding: 'utf8'}));
-  }
-}, function(error, results) {
+async.parallel(targetMap, function(error, results) {
   if (error) {
     throw error;
   }
-  jade.renderFile('assets/base.jade', {
-    pretty: true
-  }, function(error, html) {
-    if (error) {
-      throw error;
-    }console.log(html);
-    fs.writeFileSync('dest.html', html, {
+  Object.keys(results).forEach(function(dest) {
+    var cssString = results[dest];
+    fs.writeFileSync('assets/tmp.css', cssString, {
       encoding: 'utf8',
       flag: 'w'
     });
+    jade.renderFile('assets/base.jade', {
+      pretty: true
+    }, function(error, html) {
+      if (error) {
+        throw error;
+      }
+      fs.writeFileSync(dest, html, {
+        encoding: 'utf8',
+        flag: 'w'
+      });
+    });
   });
 });
-
-function isCSSFile(arg) {
-  return (path.extname(arg) === '.css');
-}

@@ -1,12 +1,14 @@
 /*
 
-This is sample description of `.sample`.
+This is sample description of `.btn`.
 
 ```html
-<button class='sample'>Button</button>
+<button class='btn'>Button</button>
 ```
 
 */
-.sample {
+.btn {
   display: inline-block;
+  width: 100px;
+  line-height: 1;
 }
