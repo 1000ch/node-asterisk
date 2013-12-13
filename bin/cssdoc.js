@@ -40,29 +40,17 @@ argv._.filter(function(arg) {
 }).forEach(function(arg) {
   if (file.isFile(arg)) {
     // if arg is a file
-    if (path.extname(arg) === '.css') {
-      targetMap[path.basename(arg).replace('.css', '.html')] = function(callback) {
-        callback(null, fs.readFileSync(arg, {encoding: 'utf8'}));
-      };
-    }
+    addMap(targetMap, arg);
   } else if (file.isDir(arg)) {
     // arg is a directory
     fs.readdirSync(arg).forEach(function(file) {
-      if (path.extname(file) === '.css') {
-        targetMap[path.basename(file).replace('.css', '.html')] = function(callback) {
-          callback(null, fs.readFileSync(arg, {encoding: 'utf8'}));
-        };
-      }
+      addMap(targetMap, file);
     });
   } else {
     // arg is the other
     glob(arg, function(error, files) {
       files.forEach(function(file) {
-        if (path.extname(file) === '.css') {
-          targetMap[path.basename(file).replace('.css', '.html')] = function(callback) {
-            callback(null, fs.readFileSync(arg, {encoding: 'utf8'}));
-          };
-        }
+        addMap(targetMap, file);
       });
     });
   }
@@ -111,3 +99,15 @@ async.parallel(targetMap, function(error, results) {
     });
   });
 });
+
+function addMap(map, filePath) {
+  var fileName = path.basename(filePath);
+  if (path.extname(fileName) !== '.css') {
+    return;
+  }
+  var key = fileName.replace('.css', '.html');
+  var value = function(callback) {
+    callback(null, fs.readFileSync(filePath, {encoding: 'utf8'}));
+  };
+  map[key] = value;
+}

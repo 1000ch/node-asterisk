@@ -1,6 +1,6 @@
 {
   "name": "cssdoc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CSS document base.",
   "bin": {
     "cssdoc": "bin/cssdoc.js"
