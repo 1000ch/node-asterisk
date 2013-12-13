@@ -10,6 +10,7 @@ var jade = require('jade');
 var marked = require('marked');
 var glob = require('glob');
 var async = require('async');
+var _ = require('underscore');
 
 // own lib
 var file = require('../lib/file');
@@ -77,6 +78,22 @@ async.parallel(targetMap, function(error, results) {
   }
   Object.keys(results).forEach(function(dest) {
     var cssString = results[dest];
+    var re = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g;
+
+    var comments = [];
+    var result;
+    while ((result = re.exec(cssString)) !== null) {
+      comments.push(result[0]);
+    }
+    
+    comments = _.compact(comments);
+    comments = _.map(comments, function(comment) {
+      return marked(comment.replace('/*', '').replace('*/', ''));
+    });
+    fs.writeFileSync('assets/temporary.html', comments.join(''), {
+      encoding: 'utf8',
+      flag: 'w'
+    });
     fs.writeFileSync('assets/temporary.css', cssString, {
       encoding: 'utf8',
       flag: 'w'
