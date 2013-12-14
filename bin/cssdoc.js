@@ -17,13 +17,13 @@ var file = require('../lib/file');
 
 // set marked options
 marked.setOptions({
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
+  gfm: true,            // Enable GitHub flavored markdown.
+  tables: true,         // Enable GFM tables. This option requires the gfm option to be true.
+  breaks: true,         // Enable GFM line breaks. This option requires the gfm option to be true.
+  pedantic: false,      // Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
+  sanitize: false,      // Sanitize the output. Ignore any HTML that has been input.
+  smartLists: true,     // Use smarter list behavior than the original markdown. May eventually be default with the old behavior moved into pedantic.
+  smartypants: false    // Use "smart" typograhic punctuation for things like quotes and dashes.
 });
 
 // target css files
@@ -60,24 +60,31 @@ if (Object.keys(targetMap).length === 0) {
   throw new Error('No css file is specified.');
 }
 
+// css comment regular expression
+// see http://www.w3.org/TR/CSS21/grammar.html
+var re = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g;
+
 async.parallel(targetMap, function(error, results) {
   if (error) {
     throw error;
   }
-  Object.keys(results).forEach(function(dest) {
+  var keys = Object.keys(results);
+  _.each(keys, function(dest) {
     var cssString = results[dest];
-    var re = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g;
 
     var comments = [];
     var result;
     while ((result = re.exec(cssString)) !== null) {
-      comments.push(result[0]);
+      var comment = _.first(result);
+      if (comment) {
+        comments.push(comment);
+      }
     }
-    
-    comments = _.compact(comments);
     comments = _.map(comments, function(comment) {
-      return marked(comment.replace('/*', '').replace('*/', ''));
+      var text = comment.replace('/*', '').replace('*/', '');
+      return marked(text);
     });
+
     fs.writeFileSync('assets/temporary.html', comments.join(''), {
       encoding: 'utf8',
       flag: 'w'
@@ -105,9 +112,16 @@ function addMap(map, filePath) {
   if (path.extname(fileName) !== '.css') {
     return;
   }
+
+  // temporary file name
+  // comment of css will be saved as html 
   var key = fileName.replace('.css', '.html');
+  
+  // function to load css executed at async.parallel
+  // callback result will be stacked as results
   var value = function(callback) {
     callback(null, fs.readFileSync(filePath, {encoding: 'utf8'}));
   };
+
   map[key] = value;
 }

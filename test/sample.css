@@ -6,11 +6,14 @@ This is sample description of `.btn`.
 <button class='btn'>Button</button>
 ```
 
+<button class='btn'>Button</button>
+
 */
 .btn {
   display: inline-block;
   width: 100px;
   line-height: 1;
+  font-size: 20px;
 }
 
 /*
