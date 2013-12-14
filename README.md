@@ -1,4 +1,4 @@
-# cssdoc
+# cssdoc [![Build Status](https://travis-ci.org/1000ch/node-cssdoc.png?branch=master)](https://travis-ci.org/1000ch/pinput)
 
 ## About
 
