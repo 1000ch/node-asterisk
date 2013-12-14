@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/1000ch/cssdoc.git"
+    "url": "git://github.com/1000ch/node-cssdoc.git"
   },
   "author": "1000ch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/1000ch/cssdoc/issues"
+    "url": "https://github.com/1000ch/node-cssdoc/issues"
   },
-  "homepage": "https://github.com/1000ch/cssdoc",
+  "homepage": "https://github.com/1000ch/node-cssdoc",
   "dependencies": {
     "marked": "~0.2.10",
     "iconv-lite": "~0.2.11",
