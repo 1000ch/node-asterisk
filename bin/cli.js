@@ -14,7 +14,7 @@ var argv = minimist(process.argv.slice(2));
 
 // if argument is not specified
 if (argv._.length === 0) {
-  console.log(chalk.red('There is no argument.'));
+  console.log(chalk.red('There is no required argument.'));
   return;
 }
 
@@ -52,6 +52,9 @@ if (cssList.length === 0) {
 }
 
 var options = {};
+if (argv.title) {
+  options.title = argv.title;
+}
 
 async.each(cssList, function iterator(css) {
   var asterisk = new Asterisk(css, options);
