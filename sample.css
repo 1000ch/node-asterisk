@@ -1,0 +1,31 @@
+/*
+<button class='btn btn-primary'>Primary Button</button>
+
+```html
+<button class='btn btn-primary'>Primary Button</button>
+```
+
+This is normal paragraph.
+
+- This is list item.
+- This is list item.
+- This is list item.
+
+**This is strong style.**
+
+*This is italic style.*
+
+~~This is line-through style.~~
+
+*/
+.btn {
+  display: inline-block;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 24px;
+  line-height: 1.5;
+}
+.btn.btn-primary {
+  color: #ffcaca;
+  background: #ee5757;
+}

@@ -24,6 +24,7 @@ asterisk.parse();
 ## Resources
 
 - [CSS Tools: Reset CSS](http://meyerweb.com/eric/tools/css/reset/)
+- [markdown.css](http://github.com/1000ch/markdown.css)
 
 ## License
 
