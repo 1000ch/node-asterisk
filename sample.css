@@ -5,6 +5,14 @@
 <button class='btn btn-primary'>Primary Button</button>
 ```
 
+<button class='btn btn-success'>Success Button</button>
+
+```html
+<button class='btn btn-success'>Success Button</button>
+```
+
+This is `inline code block`.
+
 This is normal paragraph.
 
 - This is list item.
@@ -26,6 +34,12 @@ This is normal paragraph.
   line-height: 1.5;
 }
 .btn.btn-primary {
-  color: #ffcaca;
-  background: #ee5757;
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.btn.btn-success {
+  color: #fff;
+  background-color: #47a447;
+  border-color: #398439;
 }

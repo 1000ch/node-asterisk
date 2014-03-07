@@ -6,6 +6,35 @@ CSS document generator.
 
 ## Usage
 
+### Prepare
+
+At first, add comment to css file.
+
+```css
+/*
+<button class='btn btn-primary'>Primary Button</button>
+
+```html
+<button class='btn btn-primary'>Primary Button</button>
+```
+
+*/
+.btn {
+  display: inline-block;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 24px;
+  line-height: 1.5;
+}
+.btn.btn-primary {
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+```
+
+### Generate
+
 You can use this from cli.
 
 ```sh
