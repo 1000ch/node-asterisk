@@ -14,10 +14,9 @@ At first, add comment to css file.
 /*
 <button class='btn btn-primary'>Primary Button</button>
 
-```html
+```` ```html ````
 <button class='btn btn-primary'>Primary Button</button>
-```
-
+```` ``` ````
 */
 .btn {
   display: inline-block;
