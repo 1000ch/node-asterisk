@@ -1,31 +1,32 @@
 {
-  "name": "cssdoc",
-  "version": "0.1.0",
-  "description": "CSS document base.",
+  "name": "asterisk",
+  "version": "0.2.0",
+  "description": "CSS docuemnt generator.",
   "bin": {
-    "cssdoc": "bin/cssdoc.js"
+    "asterisk": "bin/cli.js"
   },
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/1000ch/node-cssdoc.git"
+    "url": "git://github.com/1000ch/node-asterisk.git"
   },
   "author": "1000ch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/1000ch/node-cssdoc/issues"
+    "url": "https://github.com/1000ch/node-asterisk/issues"
   },
-  "homepage": "https://github.com/1000ch/node-cssdoc",
+  "homepage": "https://github.com/1000ch/node-asterisk",
   "dependencies": {
     "marked": "~0.2.10",
     "iconv-lite": "~0.2.11",
-    "optimist": "~0.6.0",
     "glob": "~3.2.7",
     "jade": "~0.35.0",
     "async": "~0.2.9",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "minimist": "0.0.8",
+    "chalk": "~0.4.0"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.9",

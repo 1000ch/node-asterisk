@@ -2,11 +2,27 @@
 
 ## About
 
-CSS document base.
+CSS document generator.
+
+## Usage
+
+You can use this from cli.
+
+```sh
+$ npm install -g asterisk
+$ asterisk sample.css
+```
+
+From JavaScript code, require this simply.
+
+```js
+var Asterisk = require('asterisk');
+var asterisk = new Asterisk('sample.css');
+asterisk.parse();
+```
 
 ## Resources
 
-- [Github Markdown Stylesheet](https://gist.github.com/tuzz/3331384/)
 - [CSS Tools: Reset CSS](http://meyerweb.com/eric/tools/css/reset/)
 
 ## License
