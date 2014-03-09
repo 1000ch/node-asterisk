@@ -51,13 +51,13 @@ if (cssList.length === 0) {
   console.log(chalk.red('No css file is specified.'));
 }
 
-var options = {};
-if (argv.title) {
-  options.title = argv.title;
+var config = {};
+if (argv.dest) {
+  config.dest = argv.dest;
 }
 
 async.each(cssList, function iterator(css) {
-  var asterisk = new Asterisk(css, options);
+  var asterisk = new Asterisk(css, config);
   asterisk.parse();
 }, function finishCallback() {
   console.log(chalk.green('Done.'));

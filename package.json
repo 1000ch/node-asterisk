@@ -19,14 +19,15 @@
   },
   "homepage": "https://github.com/1000ch/node-asterisk",
   "dependencies": {
-    "marked": "~0.2.10",
+    "marked": "~0.3.1",
     "iconv-lite": "~0.2.11",
     "glob": "~3.2.7",
     "jade": "~0.35.0",
     "async": "~0.2.9",
     "underscore": "~1.5.2",
     "minimist": "0.0.8",
-    "chalk": "~0.4.0"
+    "chalk": "~0.4.0",
+    "highlight.js": "^8.0.0"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.9",
