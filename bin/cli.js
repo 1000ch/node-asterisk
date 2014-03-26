@@ -7,6 +7,7 @@ var glob = require('glob');
 var async = require('async');
 var chalk = require('chalk');
 
+var util = require('../lib/util');
 var Asterisk = require('../lib/asterisk');
 
 // process arguments
@@ -25,10 +26,10 @@ var fileList = [];
 argv._.filter(function(arg) {
   return fs.existsSync(arg);
 }).forEach(function(arg) {
-  if (_isFile(arg)) {
+  if (util.isFile(arg)) {
     // if arg is a file
     fileList.push(arg);
-  } else if (_isDirectory(arg)) {
+  } else if (util.isDirectory(arg)) {
     // arg is a directory
     fs.readdirSync(arg).forEach(function(file) {
       fileList.push(file);
@@ -51,24 +52,9 @@ if (cssList.length === 0) {
   console.log(chalk.red('No css file is specified.'));
 }
 
-var config = {};
-if (argv.dest) {
-  config.dest = argv.dest;
-}
-
 async.each(cssList, function iterator(css) {
-  var asterisk = new Asterisk(css, config);
+  var asterisk = new Asterisk(css, argv.dest);
   asterisk.parse();
 }, function finishCallback() {
   console.log(chalk.green('Done.'));
 });
-
-function _isFile() {
-  var file = path.join.apply(path, arguments);
-  return fs.existsSync(file) && fs.statSync(file).isFile();
-}
-
-function _isDirectory() {
-  var dir = path.join.apply(path, arguments);
-  return fs.existsSync(dir) && fs.statSync(dir).isDirectory();
-}
