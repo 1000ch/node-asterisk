@@ -25,18 +25,6 @@
 
 This is `inline code block`.
 
-This is normal paragraph.
-
-- This is list item.
-- This is list item.
-- This is list item.
-
-**This is strong style.**
-
-*This is italic style.*
-
-~~This is line-through style.~~
-
 */
 .btn {
   display: inline-block;
@@ -54,4 +42,23 @@ This is normal paragraph.
   color: #fff;
   background-color: #47a447;
   border-color: #398439;
+}
+
+/*
+
+# Next Class
+
+- This is list item.
+- This is list item.
+- This is list item.
+
+**This is strong style.**
+
+*This is italic style.*
+
+~~This is line-through style.~~
+
+*/
+.next-class {
+  display: block;
 }

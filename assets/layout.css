@@ -1,0 +1,15 @@
+.asterisk-row {
+  display: flex;
+  flex-flow: row;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.asterisk-row__item {
+  flex: 1 1;
+  padding: 10px;
+}
+
+.asterisk-row__item--code {
+  background: #eee;
+}

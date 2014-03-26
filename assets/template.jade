@@ -7,6 +7,12 @@ html
     include reset.css
     include markdown.css
     include highlight/github.css
+    include layout.css
     style: !=css
   body
-    !=body
+    for pair in pairs
+      div.asterisk-row
+        div.asterisk-row__item.asterisk-row__item--markdown
+          != pair.html
+        pre.asterisk-row__item.asterisk-row__item--code
+          != pair.css
