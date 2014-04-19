@@ -1,4 +1,4 @@
-# node-asterisk [![Build Status](https://travis-ci.org/1000ch/node-asterisk.png?branch=master)](https://travis-ci.org/1000ch/node-asterisk)
+# node-asterisk [![Build Status](https://travis-ci.org/1000ch/node-asterisk.svg?branch=master)](https://travis-ci.org/1000ch/node-asterisk)
 
 ## About
 
